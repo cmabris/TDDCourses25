@@ -3,6 +3,7 @@
 use App\Models\Course;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
+
 use function Pest\Laravel\get;
 
 uses(RefreshDatabase::class);
