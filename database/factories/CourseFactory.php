@@ -13,6 +13,7 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         return [
+            'slug' => $this->faker->slug,
             'title' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
         ];

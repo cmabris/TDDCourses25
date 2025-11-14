@@ -10,6 +10,10 @@ class Course extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'learnings' => 'array',
+    ];
+
     public function scopeReleased(Builder $query)
     {
         return $query->whereNotNull('released_at');
