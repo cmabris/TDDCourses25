@@ -6,8 +6,6 @@ use Illuminate\Support\Carbon;
 
 use function Pest\Laravel\get;
 
-uses(RefreshDatabase::class);
-
 it('show courses overview', function () {
     // Arrange
     $firstCourse = Course::factory()->released()->create();

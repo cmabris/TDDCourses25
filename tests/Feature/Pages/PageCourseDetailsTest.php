@@ -5,8 +5,6 @@ use App\Models\Video;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use function Pest\Laravel\get;
 
-uses(RefreshDatabase::class);
-
 it('does not find unreleased course', function () {
     // Arrange
     $course = Course::factory()->create();
