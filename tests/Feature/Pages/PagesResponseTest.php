@@ -2,6 +2,7 @@
 
 use App\Models\Course;
 use App\Models\User;
+use App\Models\Video;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use function Pest\Laravel\get;
@@ -34,4 +35,16 @@ it('does not find jetstream registration page', function () {
     // Act & Assert
     get('register')
         ->assertNotFound();
+});
+
+it('gives successful response for videos page', function () {
+    // Arrange
+    $course = Course::factory()
+                    ->has(Video::factory())
+                    ->create();
+
+    // Act & Assert
+    loginAsUser();
+    get(route('pages.course-videos', $course))
+        ->assertOk();
 });
