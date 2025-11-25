@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('vimeo_id');
             $table->string('title');
             $table->string('description');
-            $table->string('duration');
+            $table->string('duration_in_min');
             $table->timestamps();
         });
     }
