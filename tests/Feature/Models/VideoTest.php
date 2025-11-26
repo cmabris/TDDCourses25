@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Models\Course;
 use App\Models\Video;
 
 it('gives back readable video duration', function () {
@@ -9,4 +10,14 @@ it('gives back readable video duration', function () {
 
     // Act & Assert
     expect($video->getReadableDuration())->toEqual('10min');
+});
+
+it('has course', function () {
+    // Arrange
+    $video = Video::factory()
+                  ->has(Course::factory())
+                  ->create();
+    // Act & Assert
+    expect($video->course)
+        ->toBeInstanceOf(Course::class);
 });
