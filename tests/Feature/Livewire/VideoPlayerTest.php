@@ -55,6 +55,15 @@ it('shows list of all course videos', function () {
         );
 });
 
+it('does not include route for current video', function () {
+    // Arrange
+    $course = createCourseAndVideos();
+
+    // Act & Assert
+    Livewire::test(VideoPlayer::class, ['video' => $course->videos()->first()])
+            ->assertDontSeeHtml([route('pages.course-videos', $course->videos()->first())]);
+});
+
 it('marks video as completed', function () {
     // Arrange
     $user = User::factory()->create();
@@ -67,7 +76,10 @@ it('marks video as completed', function () {
     // Act
     loginAsUser($user);
     Livewire::test(VideoPlayer::class, ['video' => $course->videos()->first()])
-        ->call('markVideoAsCompleted');
+        ->assertMethodWired('markVideoAsCompleted')
+        ->call('markVideoAsCompleted')
+        ->assertMethodWired('markVideoAsNotCompleted')
+        ->assertMethodNotWired('markVideoAsCompleted');
 
     // Assert
     $user->refresh();
@@ -90,21 +102,15 @@ it('marks video as not completed', function () {
     // Act
     loginAsUser($user);
     Livewire::test(VideoPlayer::class, ['video' => $course->videos()->first()])
-            ->call('markVideoAsNotCompleted');
+        ->assertMethodWired('markVideoAsNotCompleted')
+        ->call('markVideoAsNotCompleted')
+        ->assertMethodWired('markVideoAsCompleted')
+        ->assertMethodNotWired('markVideoAsNotCompleted');
 
     // Assert
     $user->refresh();
     expect($user->watchedVideos)
         ->toHaveCount(0);
-});
-
-it('does not include route for current video', function () {
-    // Arrange
-    $course = createCourseAndVideos();
-
-    // Act & Assert
-    Livewire::test(VideoPlayer::class, ['video' => $course->videos()->first()])
-        ->assertDontSeeHtml([route('pages.course-videos', $course->videos()->first())]);
 });
 
 
