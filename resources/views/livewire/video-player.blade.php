@@ -3,7 +3,7 @@
             webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
     <h3>{{ $video->title }} ({{ $video->getReadableDuration() }}min)</h3>
     <p>{{ $video->description }}</p>
-    @if(auth()->user()->watchedVideos()->where('video_id', $video->id)->count())
+    @if($video->alreadyWatchedByCurrentUser())
         <button wire:click="markVideoAsNotCompleted">Mark as completed</button>
     @else
         <button wire:click="markVideoAsCompleted">Mark as completed</button>

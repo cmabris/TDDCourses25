@@ -2,6 +2,7 @@
 
 
 use App\Models\Course;
+use App\Models\User;
 use App\Models\Video;
 
 it('gives back readable video duration', function () {
@@ -20,4 +21,24 @@ it('has course', function () {
     // Act & Assert
     expect($video->course)
         ->toBeInstanceOf(Course::class);
+});
+
+it('tells if current user has not yet watched a given video', function () {
+    // Arrange
+    $video = Video::factory()->create();
+
+    // Act & Assert
+    loginAsUser();
+    expect($video->alreadyWatchedByCurrentUser())->toBeFalse();
+});
+
+it('tells if current user has already watched a given video', function () {
+    // Arrange
+    $user = User::factory()
+        ->has(Video::factory(), 'watchedVideos')
+        ->create();
+
+    // Act & Assert
+    loginAsUser($user);
+    expect($user->watchedVideos()->first()->alreadyWatchedByCurrentUser())->toBeTrue();
 });
