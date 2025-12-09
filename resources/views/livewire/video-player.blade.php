@@ -6,7 +6,7 @@
     @if($video->alreadyWatchedByCurrentUser())
         <button wire:click="markVideoAsNotCompleted">Mark as completed</button>
     @else
-        <button wire:click="markVideoAsCompleted">Mark as completed</button>
+        <button wire:click="markVideoAsCompleted">Mark as not completed</button>
     @endif
     <ul>
         @foreach($courseVideos as $courseVideo)
