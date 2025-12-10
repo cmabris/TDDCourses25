@@ -65,3 +65,20 @@ it('includes logout if logged in', function () {
         ->assertSeeText('Log out')
         ->assertSee(route('logout'));
 });
+
+it('includes courses links', function () {
+    // Arrange
+    $firstCourse = Course::factory()->released()->create();
+    $secondCourse = Course::factory()->released()->create();
+    $lastCourse = Course::factory()->released()->create();
+
+    // Act & Assert
+    get(route('pages.home'))
+        ->assertOk()
+        ->assertSee([
+            route('pages.course-details', $firstCourse),
+            route('pages.course-details', $secondCourse),
+            route('pages.course-details', $lastCourse),
+        ]);
+});
+

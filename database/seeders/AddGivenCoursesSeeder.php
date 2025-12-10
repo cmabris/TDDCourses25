@@ -15,6 +15,7 @@ class AddGivenCoursesSeeder extends Seeder
         }
 
         Course::create([
+            'paddle_product_id' => 'pri_01j44a0y5gcrcxmybztgqk4zcy',
             'slug' => Str::of('Laravel For Beginners')->slug(),
             'title' => 'Laravel For Beginners',
             'tagline' => 'Make your first steps as a Laravel developer',
@@ -29,6 +30,7 @@ class AddGivenCoursesSeeder extends Seeder
         ]);
 
         Course::create([
+            'paddle_product_id' => 'pri_01j449yp0aag3mg2mjarrpzqvv',
             'slug' => Str::of('Advanced Laravel')->slug(),
             'title' => 'Advanced Laravel',
             'tagline' => 'Level up as a Laravel developer.',
@@ -43,6 +45,7 @@ class AddGivenCoursesSeeder extends Seeder
         ]);
 
         Course::create([
+            'paddle_product_id' => 'pri_01j449tat6p71xg1yx22pwnrjt',
             'slug' => Str::of('TDD The Laravel Way')->slug(),
             'title' => 'TDD The Laravel Way',
             'tagline' => 'Learn TDD with Laravel.',
