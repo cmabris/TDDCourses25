@@ -24,12 +24,5 @@
     @endenv
     Paddle.Initialize({ token: "{{ config('services.paddle.vendor-id') }}" });
 
-    document.querySelectorAll('.paddle_button').forEach(button => {
-        button.addEventListener('click', event => {
-            event.preventDefault();
-            Paddle.Checkout.open({
-                items: JSON.parse(button.dataset.items)
-            });
-        });
-    });
+
 </script>
